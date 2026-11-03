@@ -26,6 +26,7 @@ Ingeniero de Sistemas y Telecomunicaciones · Implementación de plataformas, so
 ```
 index.html   → página del portafolio (un solo archivo, sin dependencias)
 foto.jpg     → foto de perfil
+Juan_Diego_Rios_Duarte_CV.pdf → hoja de vida descargable desde la página
 README.md    → este archivo
 ```
 
