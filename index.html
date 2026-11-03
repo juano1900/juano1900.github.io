@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Juan Diego Ríos Duarte</title>
+<meta name="description" content="Ingeniero de Sistemas y Telecomunicaciones. Implementación de plataformas, soporte especializado, infraestructura y desarrollo web en Medellín.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: columna lateral fija (identidad + contacto) y columna de lectura con bitácora de experiencia y casos de proyecto */
+:root{
+  --bg:#F4F6F7; --surface:#FFFFFF; --fg:#13212B; --muted:#56656F; --line:#D9E0E4;
+  --accent:#0D6577; --accent-soft:#E2EEF0; --signal:#B8741F;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E171D; --surface:#15222A; --fg:#E4ECEF; --muted:#93A4AD; --line:#26363F;
+  --accent:#5CC3D3; --accent-soft:#16333B; --signal:#E3A452; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0E171D; --surface:#15222A; --fg:#E4ECEF; --muted:#93A4AD; --line:#26363F;
+  --accent:#5CC3D3; --accent-soft:#16333B; --signal:#E3A452; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+.wrap{max-width:1180px;margin:0 auto;padding-block:48px 72px;
+  padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));
+  display:grid;grid-template-columns:320px minmax(0,1fr);gap:64px}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:40px;padding-block:28px 56px}}
+
+/* Lateral */
+aside{position:sticky;top:calc(32px + env(safe-area-inset-top,0px));align-self:start;display:flex;flex-direction:column;gap:28px}
+@media (max-width:900px){aside{position:static}}
+.photo{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+.name{font-size:2.4rem;font-weight:800;letter-spacing:-.02em}
+.role{font-size:1.05rem;color:var(--muted);margin-top:10px}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.8rem;color:var(--fg);
+  background:var(--accent-soft);padding:6px 10px;border-radius:999px;margin-top:16px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:block}
+.contact{display:flex;flex-direction:column;gap:10px;font-size:.95rem}
+.contact div{display:flex;flex-direction:column}
+.label{font-family:var(--f-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.copy{font:inherit;background:none;border:0;padding:0;color:var(--fg);cursor:pointer;text-align:left}
+.copy:hover{color:var(--accent)}
+.copied{font-family:var(--f-mono);font-size:.72rem;color:var(--accent);margin-left:6px}
+nav.toc{display:flex;flex-direction:column;gap:6px;font-size:.95rem;border-top:1px solid var(--line);padding-top:20px}
+nav.toc a{color:var(--muted);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+@media (max-width:900px){nav.toc{flex-direction:row;flex-wrap:wrap;gap:8px 18px}}
+
+/* Principal */
+main{display:flex;flex-direction:column;gap:72px;min-width:0}
+section{display:flex;flex-direction:column;gap:24px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:12px;flex-wrap:wrap}
+.sec-head h2{font-size:1.6rem;font-weight:700}
+.sec-head span{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.lead{font-family:var(--f-display);font-weight:500;font-size:clamp(1.4rem,2.6vw,1.95rem);line-height:1.3;letter-spacing:-.01em;max-width:30ch}
+.lead em{font-style:normal;color:var(--accent)}
+.intro p{max-width:65ch;color:var(--muted);margin:0}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.facts div{background:var(--surface);padding:18px 20px;display:flex;flex-direction:column;gap:4px}
+.facts b{font-family:var(--f-display);font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums}
+.facts span{font-size:.88rem;color:var(--muted)}
+@media (max-width:600px){.facts{grid-template-columns:minmax(0,1fr)}}
+
+/* Bitácora de experiencia */
+.log{display:flex;flex-direction:column}
+.job{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.job:first-child{padding-top:4px}
+.when{font-family:var(--f-mono);font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:6px}
+.when .now{color:var(--accent);font-weight:500}
+.job h3{font-size:1.2rem;font-weight:700}
+.org{color:var(--muted);font-size:.95rem;margin:4px 0 12px}
+.org b{color:var(--fg);font-weight:600}
+.job ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;max-width:68ch}
+.job li::marker{color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-family:var(--f-mono);font-size:.75rem;border:1px solid var(--line);border-radius:4px;padding:2px 8px;color:var(--muted)}
+@media (max-width:600px){.job{grid-template-columns:minmax(0,1fr);gap:8px}.when{flex-direction:row;gap:12px}}
+
+/* Proyectos */
+.case{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:24px}
+@media (max-width:600px){.case{padding:22px}}
+.case-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.kicker{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
+.case h3{font-size:1.7rem;font-weight:800;margin-top:6px}
+.case p{margin:0;max-width:65ch}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.92rem;text-decoration:none;
+  border:1px solid var(--accent);border-radius:8px;padding:9px 14px;color:var(--accent);white-space:nowrap}
+.btn:hover{background:var(--accent);color:var(--surface)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:700px){.cols{grid-template-columns:minmax(0,1fr)}}
+.cols h4{margin:0 0 8px;font-size:.78rem;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:500}
+.cols ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:s}
+.steps li{counter-increment:s;border-top:2px solid var(--accent);padding-top:12px;font-size:.92rem;display:flex;flex-direction:column;gap:4px}
+.steps li::before{content:"Paso " counter(s);font-family:var(--f-mono);font-size:.72rem;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.steps b{font-weight:600}
+.steps span{color:var(--muted)}
+@media (max-width:800px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.steps{grid-template-columns:minmax(0,1fr)}}
+.mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:700px){.mini{grid-template-columns:minmax(0,1fr)}}
+.mini article{border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.mini h3{font-size:1.2rem;font-weight:700}
+.mini p{margin:0;color:var(--muted);font-size:.95rem}
+
+/* Habilidades */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 40px}
+@media (max-width:700px){.skills{grid-template-columns:minmax(0,1fr)}}
+.skills h3{font-family:var(--f-body);font-size:1rem;font-weight:600;margin-bottom:10px}
+.skills .tags{margin-top:0}
+.skills .tag{color:var(--fg);background:var(--surface)}
+
+/* Formación */
+.edu{display:flex;flex-direction:column}
+.edu div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.edu .when{flex-direction:row}
+.edu b{font-weight:600;display:block}
+.edu span{color:var(--muted);font-size:.93rem}
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
+@media (prefers-reduced-motion:no-preference){.btn,nav.toc a,.copy{transition:color .15s,background .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <aside>
+    <img class="photo" src="foto.jpg" alt="Foto de Juan Diego Ríos Duarte" width="132" height="132">
+    <div>
+      <h1 class="name">Juan Diego Ríos Duarte</h1>
+      <p class="role">Ingeniero de Sistemas y Telecomunicaciones · Implementación de plataformas y soporte especializado</p>
+      <span class="status"><i></i>Medellín, Colombia · Abierto a oportunidades</span>
+    </div>
+    <div class="contact">
+      <div><span class="label">Correo</span><span><button class="copy" id="c-mail" data-copy="juan.90_@hotmail.com">juan.90_@hotmail.com</button></span></div>
+      <div><span class="label">Celular / WhatsApp</span><span><button class="copy" id="c-tel" data-copy="+57 300 717 8382">+57 300 717 8382</button></span></div>
+      <div><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/juan-diego-rios-duarte-a99b1b146/" target="_blank" rel="noopener">juan-diego-rios-duarte</a></div>
+      <div><span class="label">Tarjeta profesional</span><span>17864-364117</span></div>
+    </div>
+    <nav class="toc" aria-label="Secciones">
+      <a href="#perfil">Perfil</a><a href="#experiencia">Experiencia</a><a href="#proyectos">Proyectos</a><a href="#habilidades">Habilidades</a><a href="#formacion">Formación</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="perfil" class="intro">
+      <p class="lead">Llevo plataformas de la configuración al <em>go‑live</em> y me quedo para que funcionen.</p>
+      <p>Ingeniero de Sistemas y Telecomunicaciones con trayectoria en TI desde 2016. Hoy coordino la implementación de una plataforma de gestión tributaria en Informática y Tributos: parametrizo, pruebo, capacito a funcionarios y respondo por los hitos ante el cliente. Antes diseñé redes de datos, administré servidores y Microsoft 365, y desarrollé sitios y plataformas web. Combino criterio técnico con trato directo con usuarios y gerencia.</p>
+      <div class="facts">
+        <div><b>2016</b><span>primer cargo en TI</span></div>
+        <div><b>6</b><span>empresas en Medellín y Manizales</span></div>
+        <div><b>4</b><span>frentes: implementación, soporte, redes y web</span></div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="sec-head"><h2>Experiencia</h2><span>más reciente primero</span></div>
+      <div class="log">
+        <article class="job">
+          <div class="when"><span class="now">05/2025 – hoy</span></div>
+          <div>
+            <h3>Coordinador de Implementación y Servicio al Cliente</h3>
+            <p class="org"><b>Informática y Tributos</b> · Medellín</p>
+            <ul>
+              <li>Implemento y parametrizo la plataforma de gestión de impuestos según la normativa y los procesos de cada entidad cliente.</li>
+              <li>Planeo cronogramas de implementación y hago seguimiento a hitos y entregables hasta la salida a producción.</li>
+              <li>Ejecuto pruebas funcionales y de integración para validar configuraciones antes del go‑live.</li>
+              <li>Capacito a usuarios finales y administradores, y doy soporte especializado en sitio a funcionarios.</li>
+              <li>Gestiono base de datos y resuelvo incidentes en coordinación con desarrollo y soporte.</li>
+              <li>Presento informes de avance y status report a clientes y a la gerencia interna.</li>
+            </ul>
+            <div class="tags"><span class="tag">Implementación</span><span class="tag">Parametrización</span><span class="tag">Pruebas UAT</span><span class="tag">Bases de datos</span><span class="tag">Gestión de proyectos</span></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><span>01/2024 – 06/2024</span></div>
+          <div>
+            <h3>Ingeniero Residente</h3>
+            <p class="org"><b>TEAM PRO</b> · Medellín</p>
+            <ul>
+              <li>Dirigí en obra el proyecto de redes eléctricas y de datos para una universidad.</li>
+              <li>Diseñé el cableado eléctrico y de datos y elaboré la planimetría del proyecto.</li>
+              <li>Supervisé la instalación de tableros principales y secundarios, racks, puntos de fibra óptica y datos.</li>
+              <li>Lideré técnicamente al equipo de instalación.</li>
+            </ul>
+            <div class="tags"><span class="tag">Cableado estructurado</span><span class="tag">Fibra óptica</span><span class="tag">Planimetría</span></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><span>03/2023 – 06/2023</span></div>
+          <div>
+            <h3>Coordinador de TI</h3>
+            <p class="org"><b>MUV‑U Estudios en el Exterior</b> · Medellín</p>
+            <ul>
+              <li>Administré Microsoft 365 corporativo y los servidores web de la compañía.</li>
+              <li>Mantuve y mejoré el sitio web y las plataformas de formación.</li>
+              <li>Implementé firma digital para los procesos internos.</li>
+              <li>Atendí soporte general y gestión de incidentes.</li>
+            </ul>
+            <div class="tags"><span class="tag">Microsoft 365</span><span class="tag">Servidores web</span><span class="tag">Firma digital</span></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><span>11/2021 – 06/2022</span></div>
+          <div>
+            <h3>Analista TAC</h3>
+            <p class="org"><b>SOLUTEC Group</b> · Medellín</p>
+            <ul>
+              <li>Brindé soporte especializado de software y hardware a clientes de la compañía.</li>
+              <li>Capacité a nuevos usuarios en herramientas y desarrollos internos.</li>
+              <li>Resolví incidentes de segundo nivel con documentación de cada caso.</li>
+            </ul>
+            <div class="tags"><span class="tag">Soporte N2</span><span class="tag">Capacitación</span></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><span>08/2019 – 03/2020</span></div>
+          <div>
+            <h3>Ingeniero de Soporte y Automatización</h3>
+            <p class="org"><b>G4S Technology</b> · Medellín</p>
+            <ul>
+              <li>Configuré y mantuve sistemas de CCTV, intrusión y control de acceso.</li>
+              <li>Diseñé redes LAN y ejecuté mantenimiento preventivo y correctivo.</li>
+              <li>Ejercí liderazgo técnico en las intervenciones en sitio.</li>
+            </ul>
+            <div class="tags"><span class="tag">CCTV</span><span class="tag">Control de acceso</span><span class="tag">Redes LAN</span></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><span>04/2016 – 05/2017</span></div>
+          <div>
+            <h3>Responsable de TI</h3>
+            <p class="org"><b>Transformar Consultores</b> · Manizales</p>
+            <ul>
+              <li>Desarrollé la plataforma de contratación de la empresa.</li>
+              <li>Administré el servidor corporativo, la base de datos y la página web.</li>
+              <li>Atendí soporte general a los usuarios.</li>
+            </ul>
+            <div class="tags"><span class="tag">Desarrollo web</span><span class="tag">Bases de datos</span><span class="tag">Servidores</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <div class="sec-head"><h2>Proyectos</h2><span>casos seleccionados</span></div>
+
+      <article class="case">
+        <div class="case-top">
+          <div>
+            <span class="kicker">Caso · Sitio web y correo corporativo</span>
+            <h3>MAS Abogados</h3>
+          </div>
+          <a class="btn" href="https://masabogados.com.co" target="_blank" rel="noopener">Ver sitio ↗</a>
+        </div>
+        <p>Firma de abogados que necesitaba una presencia web propia y un correo profesional bajo su dominio. Construí el sitio, lo publiqué en <b>masabogados.com.co</b> y dejé el dominio, el hosting y el correo funcionando juntos.</p>
+        <ol class="steps">
+          <li><b>Diseño y desarrollo</b><span>Sitio con las áreas de práctica, el perfil de la firma y canales de contacto.</span></li>
+          <li><b>Migración de dominio</b><span>Traslado de Hostinger a HostGator sin perder el dominio.</span></li>
+          <li><b>Correo corporativo</b><span>Correo en Zoho Mail con registros DNS configurados.</span></li>
+          <li><b>Salida a producción</b><span>Paso del dominio temporal al dominio definitivo.</span></li>
+        </ol>
+        <div class="cols">
+          <div><h4>Lo que resolví</h4><ul><li>Unificar dominio, hosting y correo en proveedores estables.</li><li>Publicar sin interrumpir el correo del cliente.</li><li>Dejar al cliente con un sitio que puede mostrar a sus clientes.</li></ul></div>
+          <div><h4>Tecnologías</h4><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">HostGator</span><span class="tag">DNS</span><span class="tag">Zoho Mail</span></div></div>
+        </div>
+      </article>
+
+      <div class="mini">
+        <article>
+          <span class="kicker">Implementación · 2025 – hoy</span>
+          <h3>Plataforma de gestión tributaria</h3>
+          <p>Implementación y parametrización para entidades cliente de Informática y Tributos: cronograma, pruebas antes del go‑live, capacitación a funcionarios y soporte posterior.</p>
+          <div class="tags"><span class="tag">Parametrización</span><span class="tag">UAT</span><span class="tag">Capacitación</span></div>
+        </article>
+        <article>
+          <span class="kicker">Desarrollo · 2016 – 2017</span>
+          <h3>Plataforma de contratación</h3>
+          <p>Sistema web interno de Transformar Consultores para gestionar procesos de contratación, con base de datos y servidor administrados por mí.</p>
+          <div class="tags"><span class="tag">Desarrollo web</span><span class="tag">Base de datos</span></div>
+        </article>
+        <article>
+          <span class="kicker">Infraestructura · 2024</span>
+          <h3>Redes para campus universitario</h3>
+          <p>Diseño y ejecución de red eléctrica y de datos: planimetría, racks, fibra óptica y tableros, como ingeniero residente de TEAM PRO.</p>
+          <div class="tags"><span class="tag">Cableado</span><span class="tag">Fibra</span></div>
+        </article>
+        <article>
+          <span class="kicker">Operación TI · 2023</span>
+          <h3>Firma digital y Microsoft 365</h3>
+          <p>Implementación de firma digital y administración del tenant de Microsoft 365 y del sitio web en MUV‑U.</p>
+          <div class="tags"><span class="tag">M365</span><span class="tag">Firma digital</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <div class="sec-head"><h2>Habilidades</h2><span>agrupadas por área</span></div>
+      <div class="skills">
+        <div><h3>Implementación y soporte</h3><div class="tags"><span class="tag">Parametrización de plataformas</span><span class="tag">Pruebas funcionales y de integración</span><span class="tag">Gestión de incidentes</span><span class="tag">Capacitación de usuarios</span><span class="tag">Documentación de requerimientos</span></div></div>
+        <div><h3>Infraestructura y redes</h3><div class="tags"><span class="tag">Redes LAN/WAN</span><span class="tag">Servidores</span><span class="tag">Cableado estructurado</span><span class="tag">CCTV y seguridad electrónica</span><span class="tag">Microsoft 365</span></div></div>
+        <div><h3>Desarrollo y web</h3><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">SEO</span><span class="tag">Bases de datos</span><span class="tag">Hosting y DNS</span></div></div>
+        <div><h3>Gestión</h3><div class="tags"><span class="tag">Scrum</span><span class="tag">Metodologías ágiles</span><span class="tag">Cronogramas e hitos</span><span class="tag">Status report</span><span class="tag">Liderazgo de equipos</span></div></div>
+      </div>
+    </section>
+
+    <section id="formacion">
+      <div class="sec-head"><h2>Formación</h2></div>
+      <div class="edu">
+        <div><span class="when">10/2024</span><p style="margin:0"><b>Bootcamp de Ciberseguridad, nivel intermedio</b><span>MinTIC · IU Training</span></p></div>
+        <div><span class="when">01/2023</span><p style="margin:0"><b>Diplomado en Metodologías Ágiles</b><span>Universidad EAFIT</span></p></div>
+        <div><span class="when">06/2017</span><p style="margin:0"><b>Ingeniero de Sistemas y Telecomunicaciones</b><span>Universidad de Manizales</span></p></div>
+      </div>
+    </section>
+
+    <footer>Referencias laborales disponibles a solicitud.</footer>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy');
+    var done=function(){var s=document.createElement('span');s.className='copied';s.textContent='Copiado';b.after(s);setTimeout(function(){s.remove()},1500)};
+    try{navigator.clipboard.writeText(t).then(done,function(){sel(b)})}catch(e){sel(b)}
+  });
+});
+function sel(el){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}
+</script>
+</body>
+</html>
